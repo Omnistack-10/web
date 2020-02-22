@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import './global.css';
 
 // Componente:  Bloco isolado de HTML, CSS e JS, 
 //              o qual não interfere no restante da aplicação
@@ -12,7 +14,10 @@ import React, { useState } from 'react';
 
 function App()  {
   return (
-    <></>
+    <div id="app">
+      <aside></aside>
+      <main></main>
+    </div>
   );
 }
 
