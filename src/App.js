@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+// Componente:  Bloco isolado de HTML, CSS e JS, 
+//              o qual não interfere no restante da aplicação
+
+// Propriedade: Informações que um componente PAI
+//              passa para o componente FILHO ("""atributos""" de um componente)
+
+// Estado:      Informações mantidas e manipuladas pelo componente (Lembrar: imutabilidade)
+
+// Desinstruturação: Pegar um vetor e quebra-lo em variáveis
+
+function App()  {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <></>
   );
 }
 
