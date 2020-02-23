@@ -26,6 +26,8 @@ function App() {
   const [github_username, setGithub_username] = useState('');
   const [techs, setTechs] = useState('');
 
+  const [devs, setDevs] = useState([]);
+
   // useEffect serve disparar uma função, toda vez que uma informação alterar
   // Se o 2 parametro (que é um vetor), estiver vazio, a função irá executar 1 vez
   // Caso colocar uma variável: [variável], toda vez que a variável estiver seu valor
@@ -47,6 +49,16 @@ function App() {
     );
   }, []);
 
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
   async function handleAddDev(event) {
     event.preventDefault();
 
@@ -57,7 +69,8 @@ function App() {
       longitude
     });
 
-    console.log(response.data);
+    setGithub_username('');
+    setTechs('');
   }
 
   return (
@@ -68,20 +81,20 @@ function App() {
 
           <div className="input-block">
             <label htmlFor="github_username">Usuário do Github</label>
-            <input 
-              name="github_username" 
-              id="github_username" 
+            <input
+              name="github_username"
+              id="github_username"
               required
               value={github_username}
-              onChange={e => setGithub_username(e.target.value)}  
+              onChange={e => setGithub_username(e.target.value)}
             />
           </div>
 
           <div className="input-block">
             <label htmlFor="techs">Tecnologias</label>
-            <input 
-              name="techs" 
-              id="techs" 
+            <input
+              name="techs"
+              id="techs"
               required
               value={techs}
               onChange={e => setTechs(e.target.value)}
@@ -91,11 +104,11 @@ function App() {
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">latitude</label>
-              <input 
-                type="number" 
-                name="latitude" 
-                id="latitude" 
-                required 
+              <input
+                type="number"
+                name="latitude"
+                id="latitude"
+                required
                 value={latitude}
                 onChange={e => setLatitude(e.target.value)}
               />
@@ -103,12 +116,12 @@ function App() {
 
             <div className="input-block">
               <label htmlFor="longitude">latitude</label>
-              <input 
+              <input
                 type="number"
-                name="longitude" 
-                id="longitude" 
-                required 
-                value={longitude} 
+                name="longitude"
+                id="longitude"
+                required
+                value={longitude}
                 onChange={e => setLongitude(e.target.value)}
               />
             </div>
@@ -120,53 +133,21 @@ function App() {
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
-              <div className="user-info">
-                <strong>Maycon Carvalho</strong>
-                <span>ReactJs, React Native, Nodejs</span>
-              </div>
-            </header>
-            <p>batatinha quando nasce pelo chao</p>
-            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
-              <div className="user-info">
-                <strong>Maycon Carvalho</strong>
-                <span>ReactJs, React Native, Nodejs</span>
-              </div>
-            </header>
-            <p>batatinha quando nasce pelo chao</p>
-            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
-              <div className="user-info">
-                <strong>Maycon Carvalho</strong>
-                <span>ReactJs, React Native, Nodejs</span>
-              </div>
-            </header>
-            <p>batatinha quando nasce pelo chao</p>
-            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
-              <div className="user-info">
-                <strong>Maycon Carvalho</strong>
-                <span>ReactJs, React Native, Nodejs</span>
-              </div>
-            </header>
-            <p>batatinha quando nasce pelo chao</p>
-            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
-          </li>
+          {devs.map(dev => {
+            return (
+              <li key={dev._id} className="dev-item">
+                <header>
+                  <img src={dev.avatar_url} alt="Dev.name" />
+                  <div className="user-info">
+                    <strong>{dev.name}</strong>
+                    <span>{dev.techs.join(', ')}</span>
+                  </div>
+                </header>
+                <p>{dev.bio}</p>
+                <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no github</a>
+              </li>
+            )
+          })}
 
         </ul>
       </main>
