@@ -71,6 +71,8 @@ function App() {
 
     setGithub_username('');
     setTechs('');
+
+    setDevs([...devs, response.data]);
   }
 
   return (
