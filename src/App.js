@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './global.css';
 import './App.css';
@@ -16,6 +16,34 @@ import './Main.css'
 // Desinstruturação: Pegar um vetor e quebra-lo em variáveis
 
 function App() {
+  // Toda vez que é alterado o estado do componente, ele será renderizado novamente
+  // Quando é executado o setLatitude ou setLongitude, os valores de latitude e longitude
+  // serão alterarados, e possuem a propriedade de estado, o render será executado novamente
+  // com as alterações 
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+
+  // useEffect serve disparar uma função, toda vez que uma informação alterar
+  // Se o 2 parametro (que é um vetor), estiver vazio, a função irá executar 1 vez
+  // Caso colocar uma variável: [variável], toda vez que a variável estiver seu valor
+  // alterado, a função será chamada
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        setLatitude(latitude);
+        setLongitude(longitude);
+      },
+      (err) => {
+        console.log(err);
+      },
+      {
+        timeout: 30000
+      }
+    );
+  }, []);
+
   return (
     <div id="app">
       <aside>
@@ -35,12 +63,12 @@ function App() {
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">latitude</label>
-              <input name="latitude" id="latitude" required />
+              <input type="number" name="latitude" id="latitude" required value={latitude} />
             </div>
 
             <div className="input-block">
               <label htmlFor="longitude">latitude</label>
-              <input name="longitude" id="longitude" required />
+              <input type="number" name="longitude" id="longitude" required value={longitude} />
             </div>
           </div>
 
