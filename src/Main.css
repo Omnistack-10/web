@@ -9,6 +9,8 @@ main ul {
     list-style: none;
 }
 
+/* Caso a largura da tela for menor que 650px */
+/* as propriedades são usadas */
 @media (max-width: 650px) {
     main ul {
         grid-template-columns: 1fr;

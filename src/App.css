@@ -12,6 +12,8 @@
     margin-left: 30px;
 }
 
+/* Caso a largura da tela for menor que 1000px */
+/* as propriedades são usadas */
 @media (max-width: 1000px) {
     #app {
         flex-direction: column;
