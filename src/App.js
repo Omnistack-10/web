@@ -3,6 +3,7 @@ import React from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css'
+import './Main.css'
 
 // Componente:  Bloco isolado de HTML, CSS e JS, 
 //              o qual não interfere no restante da aplicação
@@ -46,8 +47,58 @@ function App() {
           <button type="submit">Salvar</button>
         </form>
       </aside>
-      <main>
 
+      <main>
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
+              <div className="user-info">
+                <strong>Maycon Carvalho</strong>
+                <span>ReactJs, React Native, Nodejs</span>
+              </div>
+            </header>
+            <p>batatinha quando nasce pelo chao</p>
+            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
+              <div className="user-info">
+                <strong>Maycon Carvalho</strong>
+                <span>ReactJs, React Native, Nodejs</span>
+              </div>
+            </header>
+            <p>batatinha quando nasce pelo chao</p>
+            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
+              <div className="user-info">
+                <strong>Maycon Carvalho</strong>
+                <span>ReactJs, React Native, Nodejs</span>
+              </div>
+            </header>
+            <p>batatinha quando nasce pelo chao</p>
+            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/45008136?s=460&v=4" alt="Maycon Carvalho" />
+              <div className="user-info">
+                <strong>Maycon Carvalho</strong>
+                <span>ReactJs, React Native, Nodejs</span>
+              </div>
+            </header>
+            <p>batatinha quando nasce pelo chao</p>
+            <a href="https://github.com/mayconcarvalho">Acessar perfil no github</a>
+          </li>
+
+        </ul>
       </main>
     </div>
   );
